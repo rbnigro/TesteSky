@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">TesteSky</string>
+
+    <!-- Commons -->
+    <string name="error_401">Não autorizado</string>
+    <string name="error_400_generic">Erro não tratado</string>
+    <string name="error_404">Não localizado</string>
+    <string name="error_500_generic">Erro catastrófico</string>
+
+    <!-- Movies Acivity -->
+    <string name="movies_title">Movies</string>
+
+    <!-- Movie Details Activity -->
+    <string name="movie_details_title">Movie Details</string>
+    <string name="movie_details_title_label">Title</string>
+    <string name="movie_details_overview_label">Overview</string>
+</resources>
