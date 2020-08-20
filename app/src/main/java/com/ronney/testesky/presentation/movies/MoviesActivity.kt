@@ -8,16 +8,19 @@ import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ronney.testesky.R
+import com.ronney.testesky.data.model.Movie
 import com.ronney.testesky.presentation.base.BaseActivity
+import com.ronney.testesky.presentation.details.MovieDetailsActivity
 import kotlinx.android.synthetic.main.activity_movies.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 
-class MoviesActivity:BaseActivity() {
+class MoviesActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movies)
 
-        toolBar(toolbarMain, R.string.movies_title)
+        toolbarMain.title = getString(R.string.movies_title)
+        setSupportActionBar(toolbarMain)
 
         val viewModel: MoviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel::class.java)
 
@@ -26,11 +29,10 @@ class MoviesActivity:BaseActivity() {
                 with(recyclerMovies) {
                     layoutManager = LinearLayoutManager(this@MoviesActivity, RecyclerView.VERTICAL, false)
                     setHasFixedSize(true)
-                    adapter = MoviesAdapter
+                    adapter = MoviesAdapter(movies)
                 }
             }
-        }
-
-        )
+        })
+        viewModel.getMovies()
     }
 }
