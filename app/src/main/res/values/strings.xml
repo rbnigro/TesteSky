@@ -14,4 +14,6 @@
     <string name="movie_details_title">Movie Details</string>
     <string name="movie_details_title_label">Title</string>
     <string name="movie_details_overview_label">Overview</string>
+    <string name="movie_details_duration_label">Duration</string>
+    <string name="movie_details_releaseYear_label">Release Year</string>
 </resources>

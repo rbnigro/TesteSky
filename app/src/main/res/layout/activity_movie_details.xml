@@ -10,7 +10,7 @@
     <include layout="@layout/include_toolbar" />
 
     <TextView
-        android:id="@+id/a"
+        android:id="@+id/title"
         style="@style/MyTextViewLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,11 +23,49 @@
         tools:text="Title 1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp" />
 
     <TextView
-        android:id="@+id/c"
+        android:id="@+id/duraion"
+        style="@style/MyTextViewLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/movie_details_duration_label" />
+
+    <TextView
+        android:id="@+id/movieDetailsDuration"
+        tools:text="Duration 1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/releaseYear"
+        style="@style/MyTextViewLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/movie_details_releaseYear_label" />
+
+    <TextView
+        android:id="@+id/movieDetailsReleaseYear"
+        tools:text="Release Year 1"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/overview"
         style="@style/MyTextViewLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,8 +74,9 @@
         android:text="@string/movie_details_overview_label" />
 
     <TextView
-        android:id="@+id/movieDetailsSummary"
+        android:id="@+id/movieDetailsOverview"
         tools:text="Overview 1"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

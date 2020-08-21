@@ -12,15 +12,11 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.JsonReader
 import kotlinx.android.synthetic.main.item_movie.view.*
 
-class MoviesAdapter(
-    private val movies: List<Movie>
-    //, val onItemClickListener: ((movie: Movie) -> Unit)
-) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
+class MoviesAdapter(private val movies: List<Movie>, val onItemClickListener: ((movie: Movie) -> Unit)) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
-        return MovieViewHolder(itemView)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
+        return MovieViewHolder(itemView, onItemClickListener)
     }
 
     override fun getItemCount() = movies.count()
@@ -29,21 +25,19 @@ class MoviesAdapter(
         viewHolder.bindView(movies[position])
     }
 
-    class MovieViewHolder(
-        itemView: View
-        //, private val onItemClickListener: ((movie: Movie) -> Unit)
+    class MovieViewHolder(itemView: View, private val onItemClickListener: ((movie: Movie) -> Unit)
     ) : RecyclerView.ViewHolder(itemView) {
 
         private val displayTitle = itemView.textTitle
-        private val coverUrl = itemView.textCoverUrl
+        // private val coverUrl = itemView.textCoverUrl LER PATH
 
         fun bindView(movie: Movie) {
             displayTitle.text = movie.title
-            coverUrl.text = movie.coverUrl
+            //coverUrl.text = movie.coverUrl
 
-            //  itemView.setOnClickListener {
-            //      onItemClickListener.invoke(movie)
-            //  }
+              itemView.setOnClickListener {
+                  onItemClickListener.invoke(movie)
+              }
         }
     }
 }

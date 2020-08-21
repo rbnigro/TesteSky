@@ -1,6 +1,6 @@
 package com.ronney.testesky.presentation.movies
 
-import android.icu.text.SimpleDateFormat
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ronney.testesky.data.ApiService
@@ -9,10 +9,16 @@ import com.ronney.testesky.data.response.MovieBodyResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 
+class MoviesViewModel : ViewModel() { // não trazer activity
 
-class MoviesViewModel : ViewModel() {
+    private val _coverUrl = MutableLiveData<String>()
+    val coverUrl: LiveData<String>
+        get() = _coverUrl
+
+    init {
+        _coverUrl.value = ""
+    }
 
     val moviesLiveData: MutableLiveData<List<Movie>> = MutableLiveData()
     //    val viewFlipperLiveData: MutableLiveData<Pair<Int, Int?>> = MutableLiveData()
@@ -34,8 +40,12 @@ class MoviesViewModel : ViewModel() {
                                     result.id,
                                     result.title,
                                     result.coverUrl,
-                                    result.overview
+                                    result.overview,
+                                    result.duration,
+                                    result.releaseYear
                                 )
+                                this@MoviesViewModel._coverUrl.value = movie.coverUrl
+
                                 movies.add(movie)
                             }
                         }
@@ -57,10 +67,6 @@ class MoviesViewModel : ViewModel() {
 
             override fun onFailure(call: Call<List<MovieBodyResponse>>, t: Throwable) {
                 //viewFlipperLiveData.value = Pair(VIEW_FLIPPER_ERROR, R.string.error_500_generic)
-                val sdf = SimpleDateFormat("dd/MM/yyyy hh:mm:ss")
-                val currentDate = sdf.format(Date())
-                println("Erro às " + currentDate + " " + t.stackTrace)
-
             }
         })
     }

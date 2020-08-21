@@ -5,6 +5,7 @@ import android.os.PersistableBundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.get
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ronney.testesky.R
@@ -22,14 +23,24 @@ class MoviesActivity : BaseActivity() {
         toolbarMain.title = getString(R.string.movies_title)
         setSupportActionBar(toolbarMain)
 
-        val viewModel: MoviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel::class.java)
+        val viewModel: MoviesViewModel =
+            ViewModelProviders.of(this).get(MoviesViewModel::class.java)
 
         viewModel.moviesLiveData.observe(this, Observer {
             it?.let { movies ->
                 with(recyclerMovies) {
-                    layoutManager = LinearLayoutManager(this@MoviesActivity, RecyclerView.VERTICAL, false)
+                    layoutManager = GridLayoutManager(this@MoviesActivity, 2)
                     setHasFixedSize(true)
-                    adapter = MoviesAdapter(movies)
+                    adapter = MoviesAdapter(movies) { movie ->
+                        val intent =
+                        MovieDetailsActivity.getStartIntrent(this@MoviesActivity,
+                        movie.title,
+                            movie.duration,
+                            movie.releaseYear,
+                            movie.overview
+                            )
+                        this@MoviesActivity.startActivity(intent)
+                    }
                 }
             }
         })

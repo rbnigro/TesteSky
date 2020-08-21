@@ -10,7 +10,7 @@ import com.ronney.testesky.presentation.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 
-class MovieDetailsActivity: BaseActivity() {
+class MovieDetailsActivity : BaseActivity() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,17 +19,28 @@ class MovieDetailsActivity: BaseActivity() {
         toolBar(toolbarMain, R.string.movie_details_title, true)
 
         movieDetailsTitle.text = intent.getStringExtra(MovieDetailsActivity.EXTRA_TITLE)
-        movieDetailsSummary.text = intent.getStringExtra(MovieDetailsActivity.EXTRA_DESCRIPTION)
+        movieDetailsDuration.text = intent.getStringExtra(MovieDetailsActivity.EXTRA_DURATION)
+        movieDetailsReleaseYear.text = intent.getStringExtra(MovieDetailsActivity.EXTRA_RELEASE_YEAR)
+        movieDetailsOverview.text = intent.getStringExtra(MovieDetailsActivity.EXTRA_OVERVIEW)
     }
 
     companion object {
         private const val EXTRA_TITLE = "EXTRA_TITLE"
-        private const val EXTRA_DESCRIPTION = "EXTRA_DESCRIPTION"
+        private const val EXTRA_DURATION = "EXTRA_DURATION"
+        private const val EXTRA_RELEASE_YEAR = "EXTRA_RELEASE_YEAR"
+        private const val EXTRA_OVERVIEW = "EXTRA_OVERVIEW"
 
-        fun getStartIntrent(context: Context, title: String, description: String): Intent {
+        fun getStartIntrent(context: Context,
+                            title: String,
+                            duration: String,
+                            relearYear: String,
+                            overView: String): Intent {
             return Intent(context, MovieDetailsActivity::class.java).apply {
                 putExtra(EXTRA_TITLE, title)
-                putExtra(EXTRA_DESCRIPTION, description)
+                putExtra(EXTRA_DURATION, duration)
+                putExtra(EXTRA_RELEASE_YEAR, relearYear)
+                putExtra(EXTRA_OVERVIEW, overView)
+                // criação Intent destino com cmpoas preenchidos
             }
         }
     }
