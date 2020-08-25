@@ -40,7 +40,7 @@ class MovieDetailsActivity : BaseActivity() {
                 putExtra(EXTRA_DURATION, duration)
                 putExtra(EXTRA_RELEASE_YEAR, relearYear)
                 putExtra(EXTRA_OVERVIEW, overView)
-                // criação Intent destino com cmpoas preenchidos
+                // criação Intent destino com campos preenchidos
             }
         }
     }

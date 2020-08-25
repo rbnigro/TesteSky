@@ -44,6 +44,15 @@ class MoviesActivity : BaseActivity() {
                 }
             }
         })
+        viewModel.viewFlipperLiveData.observe(this, Observer {
+            it?.let {viewFlipper ->
+                viewFlipperMovies.displayedChild = viewFlipper.first
+                viewFlipper.second?.let { errorMessageResId ->
+                    textViewError.text = getString(errorMessageResId)
+                }
+            }
+
+        })
         viewModel.getMovies()
     }
 }
